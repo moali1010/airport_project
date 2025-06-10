@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>سبد خرید</title>
+</head>
+<body>
+    <h1>سبد خرید</h1>
+    <ul>
+        {% for item in cart_items %}
+            <li>پرواز: {{ item.flight.flight_number }}, صندلی: {{ item.seat.seat_number }}</li>
+        {% empty %}
+            <li>سبد خرید شما خالی است.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'checkout' %}">تکمیل خرید</a>
+    <br>
+    <a href="{% url 'flight_search' %}">ادامه جستجو</a>
+</body>
+</html>

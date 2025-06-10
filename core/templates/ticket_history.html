@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>تاریخچه بلیط‌ها</title>
+</head>
+<body>
+    <h1>تاریخچه بلیط‌های خریداری شده</h1>
+    <ul>
+        {% for ticket in tickets %}
+            <li>{{ ticket.ticket_number }} - پرواز: {{ ticket.flight.flight_number }} - وضعیت: {{ ticket.get_status_display }} - تاریخ: {{ ticket.purchase_date }}</li>
+        {% empty %}
+            <li>هیچ بلیطی یافت نشد.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'flight_search' %}">بازگشت به جستجو</a>
+</body>
+</html>

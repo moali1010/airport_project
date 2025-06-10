@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <title>نقشه صندلی‌های پرواز {{ flight.flight_number }}</title>
+    <style>
+      .seat {
+          display: inline-block;
+          width: 50px;
+          height: 50px;
+          margin: 5px;
+          text-align: center;
+          line-height: 50px;
+          border: 1px solid #ccc;
+      }
+      .available { background-color: #c8e6c9; }
+      .reserved { background-color: #fff9c4; }
+      .sold { background-color: #ffcdd2; }
+    </style>
+</head>
+<body>
+    <h1>صندلی‌های پرواز {{ flight.flight_number }}</h1>
+    <div>
+        {% for seat in seats %}
+            <div class="seat {{ seat.status }}">
+                {{ seat.seat_number }}<br>
+                {{ seat.get_status_display }}
+                {% if seat.status == 'available' %}
+                    <br>
+                    <a href="{% url 'add_to_cart' flight.id seat.id %}">انتخاب</a>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <br>
+    <a href="{% url 'flight_search' %}">بازگشت به جستجو</a>
+</body>
+</html>
